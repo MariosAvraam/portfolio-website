@@ -1,1 +1,20 @@
-Projects
+<!-- projects.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="my-4">Projects</h1>
+<div class="row">
+  <!-- Sample project card -->
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <img src="path_to_project_image.jpg" class="card-img-top" alt="Project Name">
+      <div class="card-body">
+        <h5 class="card-title">Project Name</h5>
+        <p class="card-text">Short project description. What was the project about? What technologies did you use?</p>
+        <a href="#" class="btn btn-primary">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+  <!-- Add other project cards similarly -->
+</div>
+{% endblock %}

@@ -1,1 +1,14 @@
-Blog
+<!-- blog.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="my-4">Blog</h1>
+<!-- Sample blog post summary -->
+<div class="mb-4">
+  <h2>Blog Post Title</h2>
+  <p class="text-muted">Posted on January 1, 2023</p>
+  <p>This is a summary or snippet from your blog post. Readers can click "Read More" to view the entire post.</p>
+  <a href="#" class="btn btn-primary">Read More</a>
+</div>
+<!-- Add other blog summaries similarly -->
+{% endblock %}

@@ -1,4 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DIRECTORY = getenv("DIRECTORY")
 
 app = Flask(__name__)
 
@@ -16,7 +22,7 @@ def blog():
 
 @app.route('/resume')
 def resume():
-    return "Resume Page - Here we will serve the resume file."
+    return send_from_directory(directory=DIRECTORY, path='Resume.pdf')
 
 if __name__ == "__main__":
     app.run(debug=True)
