@@ -1,20 +1,27 @@
-<!-- projects.html -->
 {% extends 'layout.html' %}
 
 {% block content %}
 <h1 class="my-4">Projects</h1>
 <div class="row">
-  <!-- Sample project card -->
+  {% for project in projects %}
   <div class="col-md-4">
     <div class="card mb-4">
-      <img src="path_to_project_image.jpg" class="card-img-top" alt="Project Name">
+      {% if project.image_url %}
+      <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
+      {% endif %}
       <div class="card-body">
-        <h5 class="card-title">Project Name</h5>
-        <p class="card-text">Short project description. What was the project about? What technologies did you use?</p>
-        <a href="#" class="btn btn-primary">View on GitHub</a>
+        <h5 class="card-title">
+          {{ project.title }}
+        </h5>
+        <p class="card-text">
+          {{ project.description }}
+        </p>
+        {% if project.github_url %}
+        <a href="{{ project.github_url }}" class="btn btn-primary" target="_blank">View on GitHub</a>
+        {% endif %}
       </div>
     </div>
   </div>
-  <!-- Add other project cards similarly -->
+  {% endfor %}
 </div>
 {% endblock %}
