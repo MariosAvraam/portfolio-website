@@ -98,6 +98,10 @@ footer i {
     margin-bottom: 20px;
 }
 
+.section-title.skills-title-border {
+    border-bottom: none;
+}
+
 .skills-title-border::after {
     content: '';
     position: absolute;
