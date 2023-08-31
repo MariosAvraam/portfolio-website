@@ -49,6 +49,7 @@ class Project(db.Model):
     description = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.String(300))
     github_url = db.Column(db.String(300), nullable=False)
+    order = db.Column(db.Integer, default=0)
 
 with app.app_context():
     db.create_all()
@@ -59,7 +60,7 @@ def index():
 
 @app.route('/projects')
 def projects():
-    projects = Project.query.all()
+    projects = Project.query.order_by(Project.order).all()
     return render_template('projects.html', projects=projects, active='projects')
 
 @app.route('/resume')
@@ -196,11 +197,56 @@ def delete_project(project_id):
     flash('Project deleted successfully!', 'success')
     return redirect(url_for('projects'))
 
+@app.route('/admin/reorder_projects', methods=['GET', 'POST'])
+def reorder_projects():
+    # Handle the form submission for reordering
+    if 'project_order' in request.form:
+        if not session.get('admin_verified'):
+            flash('Unauthorized access!', 'danger')
+            return redirect(url_for('index'))
+        
+        project_order = request.form.getlist('project_order')
+        
+        for index, project_id in enumerate(project_order):
+            project = Project.query.get(int(project_id))
+            project.order = index
+            db.session.commit()
+        
+        flash('Projects reordered successfully!', 'success')
+        return redirect(url_for('projects'))
+    
+    # Handle password verification
+    if request.method == 'POST':
+        if not check_failed_attempts():
+            flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
+            return redirect(url_for('reorder_projects'))
+        
+        password = request.form.get('password')
+        if password == ADMIN_PASSWORD:
+            session['admin_verified'] = True
+            session.pop('failed_attempts', None)
+            projects = Project.query.order_by(Project.order).all()
+            return render_template('reorder_projects.html', projects=projects)
+        else:
+            session['failed_attempts'] = session.get('failed_attempts', 0) + 1
+            if session['failed_attempts'] >= MAX_ATTEMPTS:
+                session['last_failed_time'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            flash('Incorrect password!', 'danger')
+            return redirect(url_for('reorder_projects'))
+
+    # Display the password form or reorder form based on session verification
+    if not session.get('admin_verified'):
+        return render_template('enter_password.html')
+    
+    projects = Project.query.order_by(Project.order).all()
+    return render_template('reorder_projects.html', projects=projects)
+
 @app.errorhandler(500)
 def internal_server_error(e):
     db.session.rollback()  # Rollback any active transactions
     flash('A server error occurred. Please try again.', 'danger')
     return render_template('500.html'), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
