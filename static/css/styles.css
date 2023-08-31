@@ -23,3 +23,29 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     align-items: center;  
 }
 
+/* Project card styling */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Footer styling */
+footer p {
+    font-size: 1.25rem;
+}
+
+footer i {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+

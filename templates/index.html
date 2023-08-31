@@ -7,7 +7,7 @@
   <a href="#projects" class="btn btn-primary btn-lg">View My Projects</a>
 </div>
 
-<section class="my-5" id="about-me">
+<section class="container my-5" id="about-me">
   <div class="row align-items-center">
     <div class="col-md-6">
       <img src="{{ url_for('static', filename='images/Linkedin_img.jpg') }}" alt="Marios Avraam" class="img-fluid rounded-circle profile-image">
@@ -30,7 +30,7 @@
   </div>
 </section>
 
-<section class="my-5" id="skills">
+<section class="container my-5" id="skills">
   <h2 class="mb-3 text-center">Skills</h2>
   <div class="row">
     <!-- Sample Skill -->
@@ -42,16 +42,45 @@
   </div>
 </section>
 
-<section class="my-5" id="contact">
+<section class="container my-5" id="contact">
   <h2 class="mb-3">Contact</h2>
   <p>
-    I'm always open to new opportunities and collaborations. Feel free to reach out!
+    I'm always open to new opportunities and collaborations. Feel free to reach out using the form below or through my contact details!
   </p>
+  <form action="/send_message" method="post">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label">Message</label>
+      <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </form>
   <ul>
     <li>Email: <a href="mailto:marios_2510@hotmail.com">marios_2510@hotmail.com</a></li>
     <li>LinkedIn: <a href="https://www.linkedin.com/in/marios-avraam-ab1320219/" target="_blank">Marios Avraam</a></li>
     <li>GitHub: <a href="https://github.com/MariosAvraam" target="_blank">Marios Avraam</a></li>
   </ul>
 </section>
+
+<footer class="text-center py-4">
+  <p>&copy; 2023 Marios Avraam. All rights reserved.</p>
+  <div>
+    <!-- Social links -->
+    <a href="https://www.linkedin.com/in/marios-avraam-ab1320219/" target="_blank" class="mx-2 text-dark">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://github.com/MariosAvraam" target="_blank" class="mx-2 text-dark">
+      <i class="fab fa-github"></i>
+    </a>
+  </div>
+</footer>
+
 
 {% endblock %}
