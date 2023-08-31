@@ -5,3 +5,11 @@ body {
 h1, h2, h3, h4, h5, h6, .navbar-brand {
     font-family: 'Open Sans', sans-serif;
 }
+
+.profile-image {
+    width: 100%;
+    max-width: 250px; 
+    border-radius: 50%; 
+    border: 2px solid #333; 
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); 
+}

@@ -3,19 +3,26 @@
 {% block content %}
 <h1>Welcome to My Portfolio</h1>
 <section class="my-5" id="about-me">
-  <h2 class="mb-3">About Me</h2>
-  <p>
-    Hello! I'm Marios Avraam, an emerging software developer with a strong passion
-    for innovation and problem-solving. Having earned my BSc in Computer Science 
-    and Mathematics at the University of Leeds, I've delved into a variety of projects, 
-    ranging from command-line scripts, GUI applications, and game development 
-    to web development, automation software, data analysis, and API integration. 
-    As I gear up for my upcoming Postgraduate MSc in Advanced Computer Science at the 
-    University of Manchester, I'm excited to tackle new challenges and further hone my 
-    skills. My interests also extend to the dynamic realm of crypto and NFTs. 
-    Being fluent in both Greek and English, I'm always open to collaborative 
-    opportunities and exploring new frontiers in technology.
-  </p>
+  <div class="row">
+    <div class="col-md-4">
+      <img src="{{ url_for('static', filename='images/Linkedin_img.jpg') }}" alt="Marios Avraam" class="profile-image">
+    </div>
+    <div class="col-md-8">
+      <h2 class="mb-3">About Me</h2>
+      <p>
+        Hello! I'm Marios Avraam, an emerging software developer with a strong passion
+        for innovation and problem-solving. Having earned my BSc in Computer Science
+        and Mathematics at the University of Leeds, I've delved into a variety of projects,
+        ranging from command-line scripts, GUI applications, and game development
+        to web development, automation software, data analysis, and API integration.
+        As I gear up for my upcoming Postgraduate MSc in Advanced Computer Science at the
+        University of Manchester, I'm excited to tackle new challenges and further hone my
+        skills. My interests also extend to the dynamic realm of crypto and NFTs.
+        Being fluent in both Greek and English, I'm always open to collaborative
+        opportunities and exploring new frontiers in technology.
+      </p>
+    </div>
+  </div>
 </section>
 <section class="my-5" id="contact">
   <h2 class="mb-3">Contact</h2>
