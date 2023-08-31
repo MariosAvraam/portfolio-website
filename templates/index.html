@@ -1,13 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1>Welcome to My Portfolio</h1>
+<div class="hero-section text-center py-5">
+  <h1 class="display-4">Crafting Code, Building Solutions</h1>
+  <p class="lead">Software Developer with a passion for innovation and problem-solving.</p>
+  <a href="#projects" class="btn btn-primary btn-lg">View My Projects</a>
+</div>
+
 <section class="my-5" id="about-me">
-  <div class="row">
-    <div class="col-md-4">
-      <img src="{{ url_for('static', filename='images/Linkedin_img.jpg') }}" alt="Marios Avraam" class="profile-image">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <img src="{{ url_for('static', filename='images/Linkedin_img.jpg') }}" alt="Marios Avraam" class="img-fluid rounded-circle profile-image">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <h2 class="mb-3">About Me</h2>
       <p>
         Hello! I'm Marios Avraam, an emerging software developer with a strong passion
@@ -24,6 +29,19 @@
     </div>
   </div>
 </section>
+
+<section class="my-5" id="skills">
+  <h2 class="mb-3 text-center">Skills</h2>
+  <div class="row">
+    <!-- Sample Skill -->
+    <div class="col-md-4 text-center">
+      <i class="fab fa-python fa-3x"></i> <!-- Font Awesome Icon for Python -->
+      <p>Python</p>
+      <p>JavaScript</p>
+    </div>
+  </div>
+</section>
+
 <section class="my-5" id="contact">
   <h2 class="mb-3">Contact</h2>
   <p>
