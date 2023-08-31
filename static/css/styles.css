@@ -138,3 +138,17 @@ footer i {
     text-decoration: none; 
 }
 
+.btn {
+    background-color: #2c3e50;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1a2836;
+    color: #ffffff;
+    text-decoration: none;
+}
