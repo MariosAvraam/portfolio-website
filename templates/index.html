@@ -34,7 +34,7 @@
 
 <section class="my-5 bg-gray" id="skills">
   <div class="container-fluid">
-      <h2 class="mb-3 text-center py-2 section-title skills-title-border">Skills</h2>
+    <h2 class="mb-3 text-center py-2 section-title skills-title-border">Skills</h2>
     <div class="row justify-content-center mb-4">
       <div class="col-md-2 text-center">
         <i class="fab fa-html5 fa-3x"></i>
@@ -86,31 +86,40 @@
 
 
 <section class="container my-5" id="contact">
-  <h2 class="mb-3 section-title section-title-border">Contact</h2>
-  <p>
-    I'm always open to new opportunities and collaborations. Feel free to reach out using the form below or through my contact details!
-  </p>
-  <form action="/send_message" method="post">
-    <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input type="text" class="form-control" id="name" name="name" required>
+  <div class="row">
+    <div class="col-md-7 offset-md-1">
+      <h2 class="mb-3 section-title section-title-border">Contact</h2>
+      <p>
+        I'm always open to new opportunities and collaborations. Feel free to reach out using the form below or through my contact details!
+      </p>
+      <form action="/send_message" method="post">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
     </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-7 offset-md-1 text-center">
+      <ul>
+        <li>Email: <a href="mailto:marios_2510@hotmail.com">marios_2510@hotmail.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/marios-avraam-ab1320219/" target="_blank">Marios Avraam</a></li>
+        <li>GitHub: <a href="https://github.com/MariosAvraam" target="_blank">Marios Avraam</a></li>
+      </ul>
     </div>
-    <div class="mb-3">
-      <label for="message" class="form-label">Message</label>
-      <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Send Message</button>
-  </form>
-  <ul>
-    <li>Email: <a href="mailto:marios_2510@hotmail.com">marios_2510@hotmail.com</a></li>
-    <li>LinkedIn: <a href="https://www.linkedin.com/in/marios-avraam-ab1320219/" target="_blank">Marios Avraam</a></li>
-    <li>GitHub: <a href="https://github.com/MariosAvraam" target="_blank">Marios Avraam</a></li>
-  </ul>
+  </div>
 </section>
+
 
 <footer class="text-center py-4 bg-gray">
   <p>&copy; 2023 Marios Avraam. All rights reserved.</p>
