@@ -1,5 +1,8 @@
 body {
     font-family: 'Merriweather', serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6, .navbar-brand {
@@ -73,6 +76,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 footer {
     background-color: #f8f9fa;
     border-top: 1px solid #e9ecef;
+    margin-top: auto;
 }
 
 footer p {
