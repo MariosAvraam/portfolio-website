@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1 class="my-4">Delete Project</h1>
+<h1 class="text-center section-title my-4">Delete Project</h1>
 <p>Are you sure you want to delete the project titled "{{ project.title }}"?</p>
 <form action="{{ url_for('delete_project', project_id=project.id) }}" method="POST">
     <button type="submit" class="btn btn-danger">Delete</button>

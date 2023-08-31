@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1 class="my-4">Edit Project</h1>
+<h1 class="text-center section-title my-4">Edit Project</h1>
 <form action="{{ url_for('edit_project', project_id=project.id) }}" method="POST">
     <div class="form-group">
         <label for="title">Project Title</label>
