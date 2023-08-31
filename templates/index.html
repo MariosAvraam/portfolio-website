@@ -14,7 +14,7 @@
       <img src="{{ url_for('static', filename='images/Linkedin_img.jpg') }}" alt="Marios Avraam" class="img-fluid rounded-circle profile-image">
     </div>
     <div class="col-md-5">
-      <h2 class="mb-3">About Me</h2>
+      <h2 class="mb-3 section-title section-title-border">About Me</h2>
       <p>
         Hello! I'm Marios Avraam, an emerging software developer with a strong passion
         for innovation and problem-solving. Having earned my BSc in Computer Science
@@ -33,59 +33,60 @@
 </section>
 
 <section class="my-5 bg-gray" id="skills">
-  <h2 class="mb-3 text-center py-3">Skills</h2>
+  <div class="container-fluid">
+      <h2 class="mb-3 text-center py-2 section-title skills-title-border">Skills</h2>
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-2 text-center">
+        <i class="fab fa-html5 fa-3x"></i>
+        <p>HTML</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fab fa-css3-alt fa-3x"></i>
+        <p>CSS</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fab fa-js fa-3x"></i>
+        <p>JavaScript</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fab fa-python fa-3x"></i>
+        <p>Python</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fas fa-robot fa-3x"></i>
+        <p>ChatGPT</p>
+      </div>
+    </div>
 
-  <div class="row justify-content-center mb-4">
-    <div class="col-md-2 text-center">
-      <i class="fab fa-html5 fa-3x"></i>
-      <p>HTML</p>
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-2 text-center">
+        <i class="fab fa-python fa-3x"></i>
+        <p>Flask</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fab fa-node-js fa-3x"></i>
+        <p>Node.js</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fab fa-github fa-3x"></i>
+        <p>GitHub</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fas fa-database fa-3x"></i>
+        <p>MongoDB</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="fas fa-database fa-3x"></i>
+        <p>SQLAlchemy & SQLite</p>
+      </div>
     </div>
-    <div class="col-md-2 text-center">
-      <i class="fab fa-css3-alt fa-3x"></i>
-      <p>CSS</p>
-    </div>
-    <div class="col-md-2 text-center">
-      <i class="fab fa-js fa-3x"></i>
-      <p>JavaScript</p>
-    </div>
-    <div class="col-md-2 text-center">
-      <i class="fab fa-python fa-3x"></i>
-      <p>Python</p>
-    </div>
-    <div class="col-md-2 text-center">
-      <i class="fas fa-robot fa-3x"></i>
-      <p>ChatGPT</p>
-    </div>
+
   </div>
-
-  <div class="row justify-content-center mb-4">
-    <div class="col-md-2 text-center">
-      <i class="fab fa-python fa-3x"></i>
-      <p>Flask</p>
-    </div>
-    <div class="col-md-2 text-center">
-      <i class="fab fa-node-js fa-3x"></i>
-      <p>Node.js</p>
-    </div>
-    <div class="col-md-2 text-center">
-      <i class="fab fa-github fa-3x"></i>
-      <p>GitHub</p>
-    </div>
-    <div class="col-md-2 text-center">
-      <i class="fas fa-database fa-3x"></i>
-      <p>MongoDB</p>
-    </div>
-    <div class="col-md-2 text-center">
-      <i class="fas fa-database fa-3x"></i>
-      <p>SQLAlchemy & SQLite</p>
-    </div>
-  </div>
-
 </section>
 
 
 <section class="container my-5" id="contact">
-  <h2 class="mb-3">Contact</h2>
+  <h2 class="mb-3 section-title section-title-border">Contact</h2>
   <p>
     I'm always open to new opportunities and collaborations. Feel free to reach out using the form below or through my contact details!
   </p>
@@ -111,7 +112,7 @@
   </ul>
 </section>
 
-<footer class="text-center py-4">
+<footer class="text-center py-4 bg-gray">
   <p>&copy; 2023 Marios Avraam. All rights reserved.</p>
   <div>
     <!-- Social links -->
