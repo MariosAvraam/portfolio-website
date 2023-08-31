@@ -2,16 +2,35 @@
 
 {% block content %}
 <div class="hero-section text-center py-5 bg-gray">
-  <h1 class="display-4">Crafting Code, Building Solutions</h1>
-  <p class="lead">Software Developer with a passion for innovation and problem-solving.</p>
+  <h1 class="display-4">Coding Tomorrow's Solutions, Today</h1>
+  <p class="lead">Where passion for technology meets a commitment to excellence.</p>
   <a href="#projects" class="btn btn-primary btn-lg">View My Projects</a>
 </div>
 
 <section class="container my-5 bg-white" id="about-me">
   <div class="row align-items-center">
     <div class="col-md-1"></div>
-    <div class="col-md-5">
+    <div class="col-md-5 image-and-icons">
       <img src="{{ url_for('static', filename='images/Linkedin_img.jpg') }}" alt="Marios Avraam" class="img-fluid rounded-circle profile-image">
+
+      <!-- Contact icons -->
+      <ul class="contact-icons">
+        <li>
+          <a href="mailto:marios_2510@hotmail.com" title="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/marios-avraam-ab1320219/" target="_blank" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/MariosAvraam" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="col-md-5">
       <h2 class="mb-3 section-title section-title-border">About Me</h2>
@@ -24,13 +43,14 @@
         As I gear up for my upcoming Postgraduate MSc in Advanced Computer Science at the
         University of Manchester, I'm excited to tackle new challenges and further hone my
         skills. My interests also extend to the dynamic realm of crypto and NFTs.
-        Being fluent in both Greek and English, I'm always open to collaborative
+        Being fluent in both English and Greek, I'm always open to collaborative
         opportunities and exploring new frontiers in technology.
       </p>
     </div>
     <div class="col-md-1"></div>
   </div>
 </section>
+
 
 <section class="my-5 bg-gray" id="skills">
   <div class="container-fluid">
@@ -107,15 +127,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </form>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col-md-7 offset-md-1 text-center">
-      <ul>
-        <li>Email: <a href="mailto:marios_2510@hotmail.com">marios_2510@hotmail.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/marios-avraam-ab1320219/" target="_blank">Marios Avraam</a></li>
-        <li>GitHub: <a href="https://github.com/MariosAvraam" target="_blank">Marios Avraam</a></li>
-      </ul>
     </div>
   </div>
 </section>
