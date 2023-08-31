@@ -31,13 +31,43 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     align-items: center;  
 }
 
+/* Even cards */
+.col-md-4:nth-child(even) .card {
+    background-color: #e6e6e6; 
+}
+
 .card {
     transition: all 0.3s ease;
+    height: 100%; /* To ensure consistent height */
+    border-radius: 5px; /* rounded corners */
+    overflow: hidden; /* keep child content (like images) within the rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    transition: all 0.3s ease;
+    background-color: #f7f7f9; /* default background color */
+}
+
+.card-img-top {
+    height: 150px; /* fixed height */
+    object-fit: cover; /* cover the allocated space */
+    width: 100%; /* ensure it spans the full width of the card */
 }
 
 .card:hover {
     transform: scale(1.05);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* enhanced shadow on hover */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column; /* To make sure the button sticks to the bottom */
+    justify-content: space-between;
+    padding: 20px; /* spacing inside the card */
+}
+
+.card-text {
+    max-height: 150px;
+    overflow-y: auto;
+    flex-grow: 1; /* Ensures the text area expands to fill available space */
 }
 
 footer {
@@ -107,3 +137,4 @@ footer i {
     color: #007bff;
     text-decoration: none; 
 }
+
