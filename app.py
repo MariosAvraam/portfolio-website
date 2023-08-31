@@ -3,11 +3,27 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, send_from_directory, request, redirect, url_for, flash, session
 from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime, timedelta
 
 load_dotenv()
 
 DIRECTORY = getenv("DIRECTORY")
 ADMIN_PASSWORD = getenv("ADMIN_PASSWORD")
+
+MAX_ATTEMPTS = 3
+LOCKOUT_TIME = 15
+
+def check_failed_attempts():
+    last_attempt_time = session.get('last_failed_time')
+    if last_attempt_time:
+        duration_since_last_attempt = datetime.now() - datetime.strptime(last_attempt_time, '%Y-%m-%d %H:%M:%S')
+        if duration_since_last_attempt < timedelta(minutes=LOCKOUT_TIME):
+            return False
+        else:
+            # Reset the counter if the lockout time has passed
+            session.pop('failed_attempts', None)
+            session.pop('last_failed_time', None)
+    return True
 
 app = Flask(__name__)
 
@@ -73,11 +89,19 @@ def send_message():
 @app.route('/admin/add_project', methods=['GET', 'POST'])
 def add_project():
     if request.method == 'POST':
+        if not check_failed_attempts():
+            flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
+            return redirect(url_for('add_project'))
+        
         password = request.form.get('password')
         if password == ADMIN_PASSWORD:
-            session['admin_verified'] = True  # Set session variable after verification
-            return redirect(url_for('admin_create_project')) # Redirect to the project creation page
+            session['admin_verified'] = True
+            session.pop('failed_attempts', None)
+            return redirect(url_for('admin_create_project'))
         else:
+            session['failed_attempts'] = session.get('failed_attempts', 0) + 1
+            if session['failed_attempts'] >= MAX_ATTEMPTS:
+                session['last_failed_time'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             flash('Incorrect password!', 'danger')
             return redirect(url_for('add_project'))
     return render_template('enter_password.html')
@@ -103,26 +127,41 @@ def admin_create_project():
 @app.route('/admin/select_edit_project', methods=['GET', 'POST'])
 def select_edit_project():
     if request.method == 'POST':
+        if not check_failed_attempts():
+            flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
+            return redirect(url_for('select_edit_project'))
+        
         password = request.form.get('password')
         if password == ADMIN_PASSWORD:
-            session['admin_verified'] = True  # Set session variable after verification
+            session['admin_verified'] = True
+            session.pop('failed_attempts', None)
             projects = Project.query.all()
             return render_template('select_edit_project.html', projects=projects)
         else:
+            session['failed_attempts'] = session.get('failed_attempts', 0) + 1
+            if session['failed_attempts'] >= MAX_ATTEMPTS:
+                session['last_failed_time'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             flash('Incorrect password!', 'danger')
             return redirect(url_for('select_edit_project'))
     return render_template('enter_password.html')
 
-
 @app.route('/admin/select_delete_project', methods=['GET', 'POST'])
 def select_delete_project():
     if request.method == 'POST':
+        if not check_failed_attempts():
+            flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
+            return redirect(url_for('select_delete_project'))
+        
         password = request.form.get('password')
         if password == ADMIN_PASSWORD:
-            session['admin_verified'] = True  # Set session variable after verification
+            session['admin_verified'] = True
+            session.pop('failed_attempts', None)
             projects = Project.query.all()
             return render_template('select_delete_project.html', projects=projects)
         else:
+            session['failed_attempts'] = session.get('failed_attempts', 0) + 1
+            if session['failed_attempts'] >= MAX_ATTEMPTS:
+                session['last_failed_time'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             flash('Incorrect password!', 'danger')
             return redirect(url_for('select_delete_project'))
     return render_template('enter_password.html')
