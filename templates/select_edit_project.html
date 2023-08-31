@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="my-4">Select Project to Edit</h1>
+<ul class="list-group">
+  {% for project in projects %}
+    <li class="list-group-item">
+        {{ project.title }}
+        <a href="{{ url_for('edit_project', project_id=project.id) }}" class="btn btn-secondary btn-sm float-right">Edit</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
