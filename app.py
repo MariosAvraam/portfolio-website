@@ -46,10 +46,6 @@ def projects():
     projects = Project.query.all()
     return render_template('projects.html', projects=projects, active='projects')
 
-@app.route('/blog')
-def blog():
-    return render_template('blog.html', active='blog')
-
 @app.route('/resume')
 def resume():
     return send_from_directory(directory=DIRECTORY, path='Resume.pdf')
