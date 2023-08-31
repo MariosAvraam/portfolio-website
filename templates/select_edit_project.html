@@ -1,13 +1,27 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1 class="text-center section-title my-4">Select Project to Edit</h1>
-<ul class="list-group mb-5">
-  {% for project in projects %}
-    <li class="list-group-item">
-        {{ project.title }}
-        <a href="{{ url_for('edit_project', project_id=project.id) }}" class="btn btn-secondary btn-sm float-right">Edit</a>
-    </li>
-  {% endfor %}
-</ul>
+<h1 class="text-center py-5 section-title">Select Project to Edit</h1>
+<div class="container mb-4">
+  <div class="row">
+    {% for project in projects %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {% if project.image_url %}
+        <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
+        {% endif %}
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            {{ project.title }}
+          </h5>
+          <p class="card-text flex-grow-1 overflow-auto">
+            {{ project.description }}
+          </p>
+          <a href="{{ url_for('edit_project', project_id=project.id) }}" class="btn btn-secondary mt-2">Edit</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
