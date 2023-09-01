@@ -86,6 +86,29 @@
     });
   </script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const certificates = document.querySelectorAll('.timeline-item');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('hidden');
+          } else {
+            entry.target.classList.add('hidden');
+          }
+        });
+      }, {
+        threshold: 0.5
+      });
+
+      certificates.forEach(certificate => {
+        observer.observe(certificate);
+      });
+    });
+  </script>
+
+
 </body>
 
 </html>
