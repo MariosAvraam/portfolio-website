@@ -1,12 +1,36 @@
+/* ==========================================
+   Base & Reset Styles
+   ========================================== */
+
+   :root {
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --accent-color: #007bff;
+    --text-color: #333;
+    --light-text-color: #777;
+}
+
 body {
     font-family: 'Merriweather', serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: var(--text-color);
 }
 
-h1, h2, h3, h4, h5, h6, .navbar-brand {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Open Sans', sans-serif;
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--accent-color);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
 .bg-gray {
@@ -17,6 +41,39 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     background-color: #ffffff;
 }
 
+/* ==========================================
+   Typography
+   ========================================== */
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+p, a {
+    font-size: 1rem;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+p, a {
+    font-weight: normal;
+}
+
+/* ==========================================
+   Layout & Components
+   ========================================== */
+
+/* Profile Image */
 .profile-image {
     width: 100%;
     max-width: 300px;
@@ -25,6 +82,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Hero Section */
 .hero-section {
     background-color: #f8f9fa;
     height: 100vh;
@@ -34,10 +92,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     align-items: center;
 }
 
-.col-md-4:nth-child(even) .card {
-    background-color: #e6e6e6;
-}
-
+/* Cards */
 .card, .timeline-content {
     transition: all 0.3s ease;
     border-radius: 5px;
@@ -70,6 +125,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     flex-grow: 1;
 }
 
+/* Footer */
 footer {
     background-color: #f8f9fa;
     border-top: 1px solid #e9ecef;
@@ -80,17 +136,19 @@ footer p, footer i {
     font-size: 1.25rem;
 }
 
+/* Section Titles */
 .section-title, .skills-title-border {
     font-size: 2.5rem;
     font-weight: bold;
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .section-title {
     border-bottom: 2px solid #e0e0e0;
 }
 
+/* Contact Icons */
 .image-and-icons {
     display: flex;
     flex-direction: column;
@@ -111,14 +169,22 @@ footer p, footer i {
 }
 
 .contact-icons a {
-    color: #333;
+    color: var(--text-color);
     font-size: 24px;
     transition: color 0.3s ease;
 }
 
 .contact-icons a:hover {
-    color: #007bff;
+    color: var(--secondary-color);
     text-decoration: none;
+}
+
+/* ==========================================
+   Buttons & Interactive Elements
+   ========================================== */
+
+.btn, a, .timeline-icon, .contact-icons a {
+    transition: all 0.3s ease;
 }
 
 .btn, form .btn-danger {
@@ -126,11 +192,10 @@ footer p, footer i {
     border: none;
     border-radius: 4px;
     font-weight: 600;
-    transition: background-color 0.3s ease;
 }
 
 .btn {
-    background-color: #2c3e50;
+    background-color: var(--primary-color);
 }
 
 .btn:hover, form .btn-danger:hover {
@@ -139,7 +204,7 @@ footer p, footer i {
 }
 
 form .btn-danger {
-    background-color: #e74c3c;
+    background-color: var(--accent-color);
 }
 
 form .btn-danger:hover {
@@ -166,6 +231,10 @@ form .form-group, form .mb-3, form .btn {
     margin-left: 10px;
 }
 
+/* ==========================================
+   Timeline Styles
+   ========================================== */
+
 .timeline {
     position: relative;
     max-width: 1200px;
@@ -186,9 +255,8 @@ form .form-group, form .mb-3, form .btn {
 .timeline-item {
     padding: 10px 40px;
     position: relative;
-    background-color: inherit;
     width: 50%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .timeline-item:nth-child(odd) {
@@ -223,14 +291,34 @@ form .form-group, form .mb-3, form .btn {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #007bff, #2c3e50);
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
     color: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease;
 }
 
 .timeline-icon:hover {
-    background: linear-gradient(45deg, #2c3e50, #007bff);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes fadeInSlide {
@@ -268,6 +356,10 @@ form .form-group, form .mb-3, form .btn {
     transition: opacity 2s ease, transform 2s ease;
 }
 
+/* ==========================================
+   Scrollbar & Miscellaneous Styles
+   ========================================== */
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -294,7 +386,6 @@ html {
 
 .navbar-nav .nav-link:hover {
     color: #007bff;
-    transition: color 0.3s ease;
 }
 
 .skills-title-container {
@@ -308,4 +399,19 @@ html {
 .skills-title-border {
     border-bottom: 2px solid #e0e0e0;
     width: 100%;
+}
+
+.timeline-icon, .contact-icons a {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.timeline-icon:hover {
+    background-color: var(--accent-color);
+}
+
+.contact-icons a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
 }
