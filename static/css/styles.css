@@ -91,16 +91,6 @@ footer p, footer i {
     border-bottom: 2px solid #e0e0e0;
 }
 
-.skills-title-border::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 80%;
-    transform: translateX(-50%);
-    border-bottom: 2px solid #e0e0e0;
-}
-
 .image-and-icons {
     display: flex;
     flex-direction: column;
@@ -305,4 +295,17 @@ html {
 .navbar-nav .nav-link:hover {
     color: #007bff;
     transition: color 0.3s ease;
+}
+
+.skills-title-container {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 83.33%; /* Equivalent to col-md-10 in a 12-column grid */
+}
+
+.skills-title-border {
+    border-bottom: 2px solid #e0e0e0;
+    width: 100%;
 }
