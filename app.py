@@ -77,7 +77,7 @@ def send_message():
         message_body = request.form['message']
 
         # Mailgun API settings
-        mailgun_domain = getenv("MAILGUN_DOMAIN")  # Assuming your MAILGUN_USERNAME is your domain
+        mailgun_domain = getenv("MAILGUN_DOMAIN")
         mailgun_api_key = getenv("MAILGUN_API_KEY")
 
         # Mailgun API endpoint
