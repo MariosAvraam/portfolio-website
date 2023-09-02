@@ -4,6 +4,8 @@ from flask import Flask, render_template, send_from_directory, request, redirect
 from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
+import requests
+
 
 load_dotenv()
 
@@ -33,6 +35,7 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = getenv("MAILGUN_USERNAME")
 app.config['MAIL_PASSWORD'] = getenv("MAILGUN_PASSWORD")
+
 
 mail = Mail(app)
 
@@ -66,34 +69,49 @@ def projects():
 @app.route('/resume')
 def resume():
     return send_from_directory(directory=DIRECTORY, path='Resume.pdf')
-
 @app.route('/send_message', methods=['POST'])
 def send_message():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         message_body = request.form['message']
-        
-        message = Message(subject="New Contact Form Submission",
-                          sender=email,
-                          recipients=["marios_2510@hotmail.com"], 
-                          body=f"Name: {name}\nEmail: {email}\n\n{message_body}")
-        
-        try:
-            mail.send(message)
+
+        # Mailgun API settings
+        mailgun_domain = getenv("MAILGUN_DOMAIN")  # Assuming your MAILGUN_USERNAME is your domain
+        mailgun_api_key = getenv("MAILGUN_API_KEY")
+
+        # Mailgun API endpoint
+        api_url = f"https://api.mailgun.net/v3/{mailgun_domain}/messages"
+
+        # Data for API call
+        data = {
+            "from": f"User <mailgun@{mailgun_domain}>",
+            "to": ["marios_2510@hotmail.com"],
+            "subject": "New Contact Form Submission",
+            "text": f"Name: {name}\nEmail: {email}\n\n{message_body}"
+        }
+
+        # Send email using Mailgun API
+        response = requests.post(
+            api_url,
+            auth=("api", mailgun_api_key),
+            data=data
+        )
+
+        if response.status_code == 200:
             flash('Your message has been sent successfully!', 'success')
-        except:
-            flash('Error occurred. Please try again later.', 'danger')
-        
+        else:
+            flash(f'Error occurred: {response.text}', 'danger')
+
         return redirect(url_for('index'))
-    
+
 @app.route('/admin/add_project', methods=['GET', 'POST'])
 def add_project():
     if request.method == 'POST':
         if not check_failed_attempts():
             flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
             return redirect(url_for('add_project'))
-        
+
         password = request.form.get('password')
         if password == ADMIN_PASSWORD:
             session['admin_verified'] = True
@@ -131,7 +149,7 @@ def select_edit_project():
         if not check_failed_attempts():
             flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
             return redirect(url_for('select_edit_project'))
-        
+
         password = request.form.get('password')
         if password == ADMIN_PASSWORD:
             session['admin_verified'] = True
@@ -152,7 +170,7 @@ def select_delete_project():
         if not check_failed_attempts():
             flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
             return redirect(url_for('select_delete_project'))
-        
+
         password = request.form.get('password')
         if password == ADMIN_PASSWORD:
             session['admin_verified'] = True
@@ -204,23 +222,23 @@ def reorder_projects():
         if not session.get('admin_verified'):
             flash('Unauthorized access!', 'danger')
             return redirect(url_for('index'))
-        
+
         project_order = request.form.getlist('project_order')
-        
+
         for index, project_id in enumerate(project_order):
             project = Project.query.get(int(project_id))
             project.order = index
             db.session.commit()
-        
+
         flash('Projects reordered successfully!', 'success')
         return redirect(url_for('projects'))
-    
+
     # Handle password verification
     if request.method == 'POST':
         if not check_failed_attempts():
             flash(f'You have entered the password incorrectly too many times. Please wait {LOCKOUT_TIME} minutes before trying again.', 'danger')
             return redirect(url_for('reorder_projects'))
-        
+
         password = request.form.get('password')
         if password == ADMIN_PASSWORD:
             session['admin_verified'] = True
@@ -237,7 +255,7 @@ def reorder_projects():
     # Display the password form or reorder form based on session verification
     if not session.get('admin_verified'):
         return render_template('enter_password.html')
-    
+
     projects = Project.query.order_by(Project.order).all()
     return render_template('reorder_projects.html', projects=projects)
 
