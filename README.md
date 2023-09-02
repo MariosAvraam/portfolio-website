@@ -2,6 +2,9 @@
 
 This repository contains the source code for my personal portfolio website. The site showcases my projects, skills, and provides a way to contact me.
 
+![Screenshot of my website](static/images/portfolio_website_image.png)
+
+
 ## Features
 
 - Showcase of projects
