@@ -134,6 +134,18 @@ html {
     flex-grow: 1;
 }
 
+/* Project Description Links */
+.card-text a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.card-text a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
 /* Footer */
 footer {
     background-color: #f8f9fa;

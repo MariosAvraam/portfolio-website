@@ -17,7 +17,7 @@
             {{ project.title }}
           </h5>
           <p class="card-text flex-grow-1 overflow-auto">
-            {{ project.description }}
+            {{ project.description | safe }}
           </p>
           {% if project.github_url %}
           <a href="{{ project.github_url }}" class="btn btn-primary mt-2" target="_blank">View on GitHub</a>
