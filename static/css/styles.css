@@ -78,6 +78,10 @@ p, a {
    Layout & Components
    ========================================== */
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Profile Image */
 .profile-image {
     width: 100%;
@@ -182,6 +186,10 @@ footer p, footer i {
 .contact-icons a:hover {
     color: var(--secondary-color);
     text-decoration: none;
+}
+
+/* About Me Section */
+#about-me {
 }
 
 /* ==========================================
@@ -383,10 +391,6 @@ section {
 
 .btn:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 .navbar-nav .nav-link:hover {
