@@ -499,3 +499,25 @@ section {
         min-width: calc(50% - 10px);
     }
 }
+
+/* Contact Section */
+#contact .contact-form-container,
+#contact form,
+#contact .mb-3,
+#contact .form-label,
+#contact .form-control,
+#contact p {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+#contact .btn {
+    padding: 8px 16px !important;
+    margin-left: 0 !important;
+}
+
+/* Remove any Bootstrap default padding */
+#contact .row,
+#contact [class*="col-"] {
+    padding-left: 0 !important;
+}
