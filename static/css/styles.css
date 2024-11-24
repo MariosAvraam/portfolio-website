@@ -69,6 +69,11 @@ p, a {
     font-weight: normal;
 }
 
+#about-me p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 /* ==========================================
    Layout & Components
    ========================================== */
@@ -490,4 +495,3 @@ html {
         min-width: calc(50% - 10px);
     }
 }
-
