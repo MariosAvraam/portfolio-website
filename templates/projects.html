@@ -8,7 +8,9 @@
     <div class="col-md-4 mb-4">
       <div class="card h-100">
         {% if project.image_url %}
-        <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.title }}">
+        <div class="project-image-container">
+          <img src="{{ project.image_url }}" class="card-img-top project-image" alt="{{ project.title }}" data-bs-toggle="modal" data-bs-target="#imageModal">
+        </div>
         {% endif %}
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">
@@ -26,4 +28,32 @@
     {% endfor %}
   </div>
 </div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-0">
+        <img src="" id="modalImage" class="img-fluid" alt="Project Image">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript for handling image clicks -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const projectImages = document.querySelectorAll('.project-image');
+  const modalImage = document.getElementById('modalImage');
+
+  projectImages.forEach(image => {
+    image.addEventListener('click', function() {
+      modalImage.src = this.src;
+    });
+  });
+});
+</script>
 {% endblock %}
