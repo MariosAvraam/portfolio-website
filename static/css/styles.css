@@ -439,7 +439,7 @@ html {
     left: 50%;
     transform: translateX(-50%);
     font-size: 24px;
-    animation: bounce 1s infinite;
+    animation: bounce 2s infinite;
 }
 
 #about-me::before {
